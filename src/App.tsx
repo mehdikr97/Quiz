@@ -1,17 +1,23 @@
+// src/App.tsx
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Pages/HomePage';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Home from '../src/Pages/HomePage';
 import Quiz from './Pages/Quiz';
+import RedirectToSession from '../src/Pages/RedirectToSession';
 
-const AppRouter: React.FC = () => {
+
+const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/quiz" element={<Quiz />} />
+        <Route path="/session" element={<RedirectToSession />} />
+        {/* Redirection globale vers la vérification de session */}
+        <Route path="*" element={<Navigate to="/session" />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 };
 
-export default AppRouter;
+export default App;
