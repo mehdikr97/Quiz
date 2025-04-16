@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import ProgressBar from './ProgressBar'; 
 
 interface Question {
   question: string;
   correct_answer: string;
   incorrect_answers: string[];
-  answers: string[]; // Mélange des bonnes et mauvaises réponses
+  answers: string[]; 
 }
 
 const QuizComponent: React.FC = () => {
@@ -75,6 +76,8 @@ const QuizComponent: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-4 shadow rounded-xl">
+      <ProgressBar current={currentIndex + 1} total={questions.length} /> {/* Assurez-vous de passer les bonnes props */}
+
       <h2 className="text-xl font-bold mb-4" dangerouslySetInnerHTML={{ __html: currentQuestion.question }} />
 
       <div className="space-y-2">
